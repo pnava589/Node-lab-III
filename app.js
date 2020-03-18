@@ -4,7 +4,8 @@ const parser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 /* ----- add new requires here ------- */
-
+const passport = require('passport');
+const flash = require('express-flash');
 
 // use .env file for configuration constants
 require('dotenv').config();
@@ -39,6 +40,23 @@ app.use(
   
 
 /* ----- add new code here ------- */
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Use express flash
+app.use(flash());
+
+//set u passport authentication
+require('./handlers/auth.js');
+
+//set up route handlers
+const openRoutes = require('./handlers/openRouter.js');
+app.use('/',openRoutes);
+
+//these routes only if logged in
+const apiRoutes = require('./handlers/apiRouter.js');
+app.use('/api',apiRoutes)
 
 
 

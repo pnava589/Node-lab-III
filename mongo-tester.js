@@ -1,4 +1,4 @@
-const express      = require('express');
+const express = require('express');
 
 // use .env file for configuration constants
 require('dotenv').config();
