@@ -1,0 +1,5 @@
+MONGO_URL=<<put in your Mongo Atlas connection string here>>
+LOGGING_FORMAT=dev
+SECRET=asdsadfd234sad324324sad
+KEY=sid
+PORT=8080
