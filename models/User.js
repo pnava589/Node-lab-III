@@ -32,8 +32,9 @@ const userSchema = new mongoose.Schema({
     const hash = user.password;
     //Hashes the password sent by the user for login and checks if the hashed password stored in the 
     //database matches the one sent. Returns true if it does else false.
+    console.log(formPassword+' '+hash);
     const compare = await bcrypt.compare(formPassword, hash);
     return compare;
 }  
 
- module.exports = mongoose.model('User', userSchema);
+ module.exports = mongoose.model('User', userSchema,'users');

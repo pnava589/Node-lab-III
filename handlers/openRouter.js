@@ -12,6 +12,7 @@ router.get('/', helper.ensureAuthenticated,(req, resp) => {
 });
 
 router.get('/login', (req, resp) => {
+   console.log(req.body+" hello");
    resp.render('login',{message:req.flash('error')});
 });
 
@@ -25,6 +26,8 @@ router.get('/logout', (req, resp) => {
 });
 
 router.post('login',async (req,resp,next)=>{
+   /*console.log(req.body);
+   resp.send('hello');*/
    //use passports authentication to see if valid login
    passport.authenticate('localLogin',
                            {successRedirect:'/',

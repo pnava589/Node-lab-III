@@ -26,7 +26,7 @@ app.use('/static', express.static('public'));
 
 // setup express middleware
 app.use(parser.json());
-app.use(parser.urlencoded({extended: true}));
+app.use(parser.urlencoded({extended: false}));
 
 // Express session
 app.use(cookieParser('oreos'));
@@ -65,6 +65,7 @@ app.use('/api',apiRoutes)
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.json({ error : err });
+    console.log('does not work');
 });
 
 // Use express to listen to port

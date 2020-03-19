@@ -43,6 +43,6 @@ const strategy = new LocalStrategy(localOpt,async(email,password,done)=>{
 
     passport.serializeUser((user,done)=>done(null,user.email));
 
-    passport.deserializeUser((user,done)=>{
+    passport.deserializeUser((email,done)=>{
         UserModel.findOne({email:email},(err,user)=>done(err,user));
     });
