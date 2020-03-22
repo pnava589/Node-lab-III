@@ -26,7 +26,7 @@ app.use('/static', express.static('public'));
 
 // setup express middleware
 app.use(parser.json());
-app.use(parser.urlencoded({extended: false}));
+app.use(parser.urlencoded({extended: true}));
 
 // Express session
 app.use(cookieParser('oreos'));
@@ -44,28 +44,22 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Use express flash
+//use express flash
 app.use(flash());
-
-//set u passport authentication
+//set up passport authentication
 require('./handlers/auth.js');
-
 //set up route handlers
 const openRoutes = require('./handlers/openRouter.js');
-app.use('/',openRoutes);
-
+app.use('/', openRoutes);
 //these routes only if logged in
 const apiRoutes = require('./handlers/apiRouter.js');
-app.use('/api',apiRoutes)
-
-
+app.use('/api', apiRoutes);
 
 
 
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.json({ error : err });
-    console.log('does not work');
 });
 
 // Use express to listen to port

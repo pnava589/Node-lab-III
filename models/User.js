@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 // define a schema that maps to the structure of the data in MongoDB
 const userSchema = new mongoose.Schema({
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     likes: Number
    },
    email: String,
-   password_bcrypt: String,
+   password: String,
    apikey: String
  });
 
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     const hash = user.password;
     //Hashes the password sent by the user for login and checks if the hashed password stored in the 
     //database matches the one sent. Returns true if it does else false.
-    console.log(formPassword+' '+hash);
+    
     const compare = await bcrypt.compare(formPassword, hash);
     return compare;
 }  
